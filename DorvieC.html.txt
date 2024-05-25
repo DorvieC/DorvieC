@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>CryptoClicker Game</title>
+    <style>
+        body {
+            text-align: center;
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        #clicker {
+            font-size: 24px;
+            padding: 20px;
+            margin-top: 50px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            display: inline-block;
+            cursor: pointer;
+            background-color: #fff;
+        }
+        #stats {
+            margin-top: 20px;
+        }
+        button {
+            font-size: 16px;
+            padding: 10px;
+            margin-top: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>CryptoClicker</h1>
+    <div id="clicker">Click me!</div>
+    <div id="stats">
+        <p>Coins: <span id="coins">0</span></p>
+        <p>Click Value: <span id="click_value">1</span></p>
+        <p>Multiplier Cost: <span id="multiplier_cost">10</span></p>
+    </div>
+    <button onclick="upgradeClickValue()">Upgrade Click Value</button>
+
+    <script>
+        let coins = 0;
+        let clickValue = 1;
+        let multiplierCost = 10;
+
+        document.getElementById('clicker').onclick = function() {
+            coins += clickValue;
+            updateDisplay();
+        };
+
+        function upgradeClickValue() {
+            if (coins >= multiplierCost) {
+                coins -= multiplierCost;
+                clickValue += 1;
+                multiplierCost *= 2;
+                updateDisplay();
+            } else {
+                alert('Not enough coins to upgrade!');
+            }
+        }
+
+        function updateDisplay() {
+            document.getElementById('coins').innerText = coins;
+            document.getElementById('click_value').innerText = clickValue;
+            document.getElementById('multiplier_cost').innerText = multiplierCost;
+        }
+    </script>
+</body>
+</html>
